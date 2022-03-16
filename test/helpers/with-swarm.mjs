@@ -1,7 +1,7 @@
-import Hyperswarm from 'hyperswarm'
+import Bitswarm from '@web4/bitswarm'
 
 export async function withSwarm (dht, cb) {
-  const swarm = new Hyperswarm({ dht })
+  const swarm = new Bitswarm({ dht })
 
   try {
     await cb(swarm)

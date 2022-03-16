@@ -1,4 +1,4 @@
-import DHT from '@hyperswarm/dht'
+import DHT from '@web4/dht'
 
 export async function withDHT (cb) {
   const dht = new DHT({ ephemeral: true, bootstrap: [] })

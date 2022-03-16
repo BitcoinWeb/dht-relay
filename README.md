@@ -1,13 +1,13 @@
-# Hyperswarm Relay
+# Bitswarm Relay
 
 > :test_tube: This project is still experimental. **Do not use it in production**.
 
-Relaying the Hyperswarm DHT over framed streams to bring decentralized networking to everyone.
+Relaying the Bitswarm DHT over framed streams to bring decentralized networking to everyone.
 
 ## Installation
 
 ```sh
-npm install @hyperswarm/dht-relay
+npm install @web4/dht-relay
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install @hyperswarm/dht-relay
 On the relaying side:
 
 ```js
-import DHT from '@hyperswarm/dht'
-import { relay } from '@hyperswarm/dht-relay'
+import DHT from '@web4/dht'
+import { relay } from '@web4/dht-relay'
 
 relay(new DHT(), stream)
 ```
@@ -24,12 +24,12 @@ relay(new DHT(), stream)
 On the relayed side:
 
 ```js
-import DHT from '@hyperswarm/dht-relay'
+import DHT from '@web4/dht-relay'
 
 const dht = new DHT(stream)
 ```
 
-From here, the API matches that of the Hyperswarm DHT: <https://github.com/hyperswarm/dht#api>
+From here, the API matches that of the Bitswarm DHT: <https://github.com/bitwebs/dht#api>
 
 ### Transports
 
@@ -38,16 +38,16 @@ As a convenience, we provide stream wrappers for common transport protocols. The
 <details>
 <summary>TCP</summary>
 
-The TCP wrapper is a re-export of <https://github.com/hyperswarm/secret-stream> which adds both framing and encryption.
+The TCP wrapper is a re-export of <https://github.com/bitwebs/secret-stream> which adds both framing and encryption.
 
 On the relaying side:
 
 ```js
 import net from 'net'
 
-import DHT from '@hyperswarm/dht'
-import { relay } from '@hyperswarm/dht-relay'
-import Stream from '@hyperswarm/dht-relay/tcp'
+import DHT from '@web4/dht'
+import { relay } from '@web4/dht-relay'
+import Stream from '@web4/dht-relay/tcp'
 
 const dht = new DHT()
 const server = net.createServer().listen(8080)
@@ -62,8 +62,8 @@ On the relayed side:
 ```js
 import net from 'net'
 
-import DHT from '@hyperswarm/dht-relay'
-import Stream from '@hyperswarm/dht-relay/tcp'
+import DHT from '@web4/dht-relay'
+import Stream from '@web4/dht-relay/tcp'
 
 const socket = net.connect(8080)
 const dht = new DHT(new Stream(true, socket))
@@ -80,9 +80,9 @@ On the relaying side:
 ```js
 import { WebSocketServer } from 'ws'
 
-import DHT from '@hyperswarm/dht'
-import { relay } from '@hyperswarm/dht-relay'
-import Stream from '@hyperswarm/dht-relay/ws'
+import DHT from '@web4/dht'
+import { relay } from '@web4/dht-relay'
+import Stream from '@web4/dht-relay/ws'
 
 const dht = new DHT()
 const server = new WebSocketServer({ port: 8080 })
@@ -95,8 +95,8 @@ server.on('connection', (socket) => {
 On the relayed side:
 
 ```js
-import DHT from '@hyperswarm/dht-relay'
-import Stream from '@hyperswarm/dht-relay/ws'
+import DHT from '@web4/dht-relay'
+import Stream from '@web4/dht-relay/ws'
 
 const socket = new WebSocket('ws://localhost:8080')
 const dht = new DHT(new Stream(true, socket))
